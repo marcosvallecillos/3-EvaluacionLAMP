@@ -10,7 +10,7 @@
             <?php
                 echo "<h1>Hello, Welcome DAW Student!</h1>";
 
-                $conn = mysqli_connect('db', 'root', 'test', "dbname");
+                $conn = mysqli_connect('db', 'root', 'test', "ap21");
                 
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
@@ -23,18 +23,18 @@
                  
                 
                 //ejemplo prepared statement
-                $stmt = $conn->prepare('INSERT INTO Person(id, name) VALUES (?, ?)');
-                $stmt->bindParam("is", $id, $name);
+                $stmt = $conn->prepare('INSERT INTO Person(id, acount, date, paid) VALUES (?, ?)');
+                $stmt->bindParam("is", $id, $acount, $date, $paid );
                 $id = 222;
                 $name = "Lenin";
                 $stmt->execute();
                 */
 
-                $query = 'SELECT * From Person';
+                $query = 'SELECT * From investment';
                 $result = mysqli_query($conn, $query);
 
                 echo '<table class="table table-striped">';
-                echo '<thead><tr><th>id</th><th>name</th></tr></thead>';
+                echo '<thead><tr><th>id</th><th>Company</th><th>Investment</th><th>Date</th><th>Active</th></tr></thead>';
                 while($value = $result->fetch_array(MYSQLI_ASSOC)){
                     echo '<tr>';
                     foreach($value as $element){
